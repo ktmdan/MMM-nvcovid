@@ -1,0 +1,95 @@
+
+body {
+  font-size: 40px;
+}
+
+r.highlight > td {
+  font-size: 60px;
+}
+
+#tblnv {
+  width: 45%;
+  border-collapse: collapse!important;
+  position: absolute;
+  right: 0;
+  top: 613px;
+  font-size: 160px;
+  color: darkgoldenrod;
+}
+#tblcounty {
+  margin-top: 20px;
+  width: 50%;
+  font-size: 40px;
+  border-collapse: collapse!important;
+}
+
+#tblcounty tr {
+  line-height: 40px;
+}
+
+#tblcounty thead tr {
+  border-bottom: 3px double grey;
+}
+
+#tblcounty thead tr th {
+  text-align: left;
+}
+
+.covid {
+    border-collapse: collapse!important;
+    width: 100%;
+  }
+
+  .covid thead tr {
+    border-bottom: 3px double grey;
+  }
+
+  .covid thead tr th {
+  text-align: left;
+  }
+
+  .highlight td {
+    color: darkgoldenrod;
+    background-color: black;
+  }
+  
+  .covid .small {
+    font-size: 14px;
+  }
+  
+  .covid .medium {
+    font-size: 20px;
+  }
+  
+  .covid td.number {
+    text-align: right;
+  }
+  
+  .covid td.recovered {
+    color: green;
+  }
+  
+  .covid td.deaths {
+    color: red;
+  }
+  
+  .covid td.serious {
+    color: orangered;
+  }
+  
+  .covid td.active {
+    color: orange;
+  }
+  .covid tr.world {
+    border-bottom: 3px double grey;
+  }
+  
+  .covid td.last-update {
+    text-align: right;
+    font-size: 11px;
+  }
+  
+  .covid tr.highlight {
+    background-color: #404040;
+  }
+  
