@@ -89,10 +89,12 @@ Module.register("MMM-nvcovid", {
 				if (value['level'] !== 'county') continue;
 				var cases = 'cases' in value ? value['cases'] : '0';
 				var deaths = 'deaths' in value ? value['deaths'] : '0';
+				var active = 'active' in value ? value['active'] : '';
+				var recovered = 'recovered' in value ? value['recovered'] : '';
 				if (cases == 0 && deaths == 0) continue;
 				//by county, latest -> confirmed, deaths
 				var county = value['county'];
-				na[county] = { 'latest': { 'confirmed': cases, 'deaths': deaths }}
+				na[county] = { 'latest': { 'confirmed': cases, 'deaths': deaths, 'active': active, 'recovered': recovered }}
 			}
 
 			console.log('NEWCOUNTY_RESULT',na);
@@ -308,10 +310,11 @@ Module.register("MMM-nvcovid", {
 		var ctable = document.createElement("table");
 		var chead = document.createElement('thead');
 		var cheadtr = document.createElement('tr');
-		cheadtr.innerHTML = "<th>County</th><th>Confirmed</th><th>Deaths</th>"
+		cheadtr.innerHTML = "<th>County</th><th>Confirmed</th><th>Deaths</th><th>Active</th><th>Recovered</th>"
 		chead.appendChild(cheadtr)
 		ctable.appendChild(chead);
 		ctable.id = "tblcounty";
+		var allowed_counties = ['Carson City','Lyon County','Clark County','Washoe County','Storey County','Douglas County'];
 		for (var c in this.countyStats) {
 			
 			var value = this.countyStats[c];
@@ -319,7 +322,8 @@ Module.register("MMM-nvcovid", {
 			var tr = document.createElement("tr");
 			if (c === 'Carson City')
 				tr.className = "highlight";
-
+			if (!allowed_counties.includes(c)) continue;
+			
 			var county = document.createElement("td");
 			county.innerHTML = c;
 			tr.appendChild(county);
@@ -335,6 +339,14 @@ Module.register("MMM-nvcovid", {
 			var td_deaths = document.createElement("td");
 			td_deaths.innerHTML = deaths;
 			tr.appendChild(td_deaths);
+
+			var td_active = document.createElement("td");
+			td_active.innerHTML = latest['active'];
+			tr.appendChild(td_active);
+
+			var td_recovered = document.createElement("td");
+			td_recovered.innerHTML = latest['recovered'];
+			tr.appendChild(td_recovered);
 
 			ctable.appendChild(tr);
 		}
